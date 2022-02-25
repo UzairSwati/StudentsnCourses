@@ -18,24 +18,10 @@ namespace Courses.DBContext
         {
         }
 
-        public virtual DbSet<Course> Course { get; set; }
+        public DbSet<Course> Course { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Course>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("NAME")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.StudentId).HasColumnName("ROLL_NO");
-                entity.Property(e => e.TotalMarks).HasColumnName("TOTAL_MARKS");
-                entity.Property(e => e.ObtainedMarks).HasColumnName("OBTAINED_MARKS");
-            });
-        }
+        protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
+        => dbContextOptionsBuilder.UseSqlServer("Server=TOSHIBA\\SQLEXPRESS;user id=sa;pwd=admin;Database=StudentsData;");
 
     }
 }

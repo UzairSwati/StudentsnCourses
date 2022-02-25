@@ -30,6 +30,8 @@ namespace Students.Services
             {
                 var res = await _studentsDBContext.Student.AddAsync(student);
 
+                await _studentsDBContext.SaveChangesAsync();
+
                 return res.Entity.Id;
             }
             catch (Exception)
@@ -60,8 +62,6 @@ namespace Students.Services
         {
             try
             {
-                //var res = await _studentsDBContext.Student.Where(x => x.Id == 33).FirstOrDefaultAsync();
-
                 return Task.FromResult(_studentsDBContext.Student.ToList());
             }
             catch (Exception ex)

@@ -20,27 +20,6 @@
     background-color: #04AA6D;
     color: white;
   }
-
-
-  
-  .block {
-    margin-left: 35em;
-    display: block;
-    width: 100%;
-    border: none;
-    background-color: #04AA6D;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-  }
-
-
-  .container {
-    height: 200px;
-    position: relative;
-    // border: 3px solid green;
-  }
   
   .vertical-center {
     margin: 0;
@@ -49,3 +28,20 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
+
+  .container{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    }
+    #btn{
+      background-color: #04AA6D;
+      margin-top: 20px;
+      border: none;
+      color: white;
+      padding: 14px 28px;
+      font-size: 26px;
+      text-align: center;
+      cursor: pointer;
+    }

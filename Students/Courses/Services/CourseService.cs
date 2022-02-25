@@ -30,6 +30,8 @@ namespace Courses.Services
             {
                 var res = await _coursesDBContext.Course.AddAsync(course);
 
+                await _coursesDBContext.SaveChangesAsync();
+
                 return res.Entity.Id;
             }
             catch (Exception)

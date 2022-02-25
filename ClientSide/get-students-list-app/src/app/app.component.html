@@ -1,17 +1,11 @@
 <div class="container" *ngIf="!data">
-  <div class="vertical-center">
-    <button (click)="OnClick()" class="block">Get Students Data</button>
+  <button id ="btn" (click)="OnClick()">Get Students Data</button>
   </div>
-</div>
-<div class="container" *ngIf="data?.length">
-  <div class="vertical-center">
-    <button (click)="OnEraseButtonClick()" class="block">Erase Students Data</button>
-  </div>
-</div>
 
-
-
-
+  <div class="container" *ngIf="data?.length">
+    <button id ="btn" (click)="OnEraseButtonClick()">Erase Students Data</button>
+    </div>
+  
 <table id="customers" *ngIf="data">
   <tr>
     <th>Id</th>
@@ -20,7 +14,9 @@
   </tr>
   <tr *ngFor="let item of data">
     <td>{{item.id}}</td>
+    <!-- <td>{{item.name | titlecase}}</td> -->
     <td>{{item.title | titlecase}}</td>
+    <!-- <td>{{item.rollNo}}</td> -->
     <td>{{item.userId}}</td>
   </tr>
 
