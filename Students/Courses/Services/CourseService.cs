@@ -1,5 +1,6 @@
 ﻿using Courses.DBContext;
 using Courses.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,23 @@ namespace Courses.Services
             }
         }
 
+        public async Task<int> UpdateAsync(Course course)
+        {
+            try
+            {
+                var res = _coursesDBContext.Course.Update(course);
+
+                await _coursesDBContext.SaveChangesAsync();
+
+                return res.Entity.Id;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public Task<List<Course>> GetAllAsync()
         {
             try
@@ -49,6 +67,28 @@ namespace Courses.Services
             {
 
                 throw ex;
+            }
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            try
+            {
+                var course = await _coursesDBContext.Course.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+                if (course != null)
+                {
+                    _coursesDBContext.Course.Remove(course);
+
+                    await _coursesDBContext.SaveChangesAsync();
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 

@@ -39,13 +39,30 @@ namespace Students.Services
             }
         }
 
-        public async  Task<List<Student>> GetAllAsync()
+        public async Task<int> UpdateAsync(Student student)
         {
             try
             {
-                var res = await _studentsDBContext.Student.Where(x => x.Id == 33).FirstOrDefaultAsync();
+                var res = _studentsDBContext.Student.Update(student);
 
-                return _studentsDBContext.Student.ToList();
+                await _studentsDBContext.SaveChangesAsync();
+
+                return res.Entity.Id;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public Task<List<Student>> GetAllAsync()
+        {
+            try
+            {
+                //var res = await _studentsDBContext.Student.Where(x => x.Id == 33).FirstOrDefaultAsync();
+
+                return Task.FromResult(_studentsDBContext.Student.ToList());
             }
             catch (Exception ex)
             {
@@ -54,6 +71,27 @@ namespace Students.Services
             }
         }
 
+        public async Task<bool> DeleteAsync(int id)
+        {
+            try
+            {
+                var student = await _studentsDBContext.Student.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+                if (student != null)
+                {
+                    _studentsDBContext.Student.Remove(student);
+                }
+
+                await _studentsDBContext.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         #endregion
     }
 }

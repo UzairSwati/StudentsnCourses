@@ -9,6 +9,8 @@ namespace Students.Services
     public interface IStudentService
     {
         Task<int> AddAsync(Student student);
+        Task<int> UpdateAsync(Student student);
         Task<List<Student>> GetAllAsync();
+        Task<bool> DeleteAsync(int id);
     }
 }

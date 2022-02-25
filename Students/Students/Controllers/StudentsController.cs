@@ -20,7 +20,8 @@ namespace Students.Controllers
         #region Ctor
         public StudentsController(IStudentService studentService)
         {
-            _studentService = studentService;
+            _studentService = studentService ??
+                 throw new ArgumentNullException(nameof(studentService));
         }
         #endregion
 
@@ -30,6 +31,21 @@ namespace Students.Controllers
         {
             try
             {
+                if (student == null)
+                {
+                    return BadRequest("Student is null");
+                }
+
+                if (student.RollNo == 0)
+                {
+                    return BadRequest("RollNo is Zero");
+                }
+
+                if (string.IsNullOrEmpty(student.Name))
+                {
+                    return BadRequest("Name is empty");
+                }
+
                 var id = await _studentService.AddAsync(student);
 
                 return Ok(id);
@@ -50,6 +66,59 @@ namespace Students.Controllers
                 var response = await _studentService.GetAllAsync();
 
                 return Ok(response);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult<List<Student>>> DeleteAsync([FromRoute] int id)
+        {
+            try
+            {
+                var response = await _studentService.DeleteAsync(id);
+
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateAsync([FromBody] Student student)
+        {
+            try
+            {
+                if (student == null)
+                {
+                    return BadRequest("Student is null");
+                }
+
+                if (student.Id == 0)
+                {
+                    return BadRequest("StudentId is Zero");
+                }
+
+                if (student.RollNo == 0)
+                {
+                    return BadRequest("RollNo is Zero");
+                }
+
+                if (string.IsNullOrEmpty(student.Name))
+                {
+                    return BadRequest("Name is empty");
+                }
+
+                var id = await _studentService.UpdateAsync(student);
+
+                return Ok(id);
             }
             catch (Exception)
             {
