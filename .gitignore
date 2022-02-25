@@ -13,9 +13,10 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-/Students/Students/Courses/bin
-/Students/Students/Students/bin
+/Students/Courses/bin
+/Students/Students/bin
 /.vs
+/Students/.vs
 
 # Build results
 [Dd]ebug/
