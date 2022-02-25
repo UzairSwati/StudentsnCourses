@@ -32,6 +32,8 @@ namespace Courses.DBContext
                     .IsUnicode(false);
 
                 entity.Property(e => e.StudentId).HasColumnName("ROLL_NO");
+                entity.Property(e => e.TotalMarks).HasColumnName("TOTAL_MARKS");
+                entity.Property(e => e.ObtainedMarks).HasColumnName("OBTAINED_MARKS");
             });
         }
 
