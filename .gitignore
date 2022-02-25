@@ -29,6 +29,15 @@
 /.vs
 /Students/.vs
 
+*/**/bin/Debug
+*/**/bin/Release
+*/**/obj/Debug
+*/**/obj/Release
+*/**/bin
+*/**/bin
+*/**/obj
+*/**/obj
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
