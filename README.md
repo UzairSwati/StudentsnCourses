@@ -22,7 +22,7 @@ It is basically a CRUD project involving _Students_ and _Courses_.
 **get-students-list-app :** This Angular app is responsible for displaying the _Students_ list. It is currently displaying the data from an online sample Api but the desired Api url can be placed in **app.component.ts** and properties mapping might need to be changed in **app.component.html**.
 
 
-## How to Run [After Clonning the repo]
+## How to Run [After Cloning the repo]
 
 **.NET Services :** All three services need to be in running state by using _multiple startup projects_ or starting each service individually. Most importantly, all services should be using unique and available ports which can be configured in _launchSettings.json_. All the communication should go pass the _ApiGateway_ and _ocelot.json_ file should be used as a reference. For example, _https://localhost:port/students/{id}_ and _https://localhost:port/courses/{id}_ can be used to get a specific _Student_ and _Course_ record respectively.
 
