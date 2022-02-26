@@ -11,7 +11,7 @@ export class AppComponent {
 constructor(private httpClient: HttpClient) {}
   OnClick() {
     this.httpClient.get('https://jsonplaceholder.typicode.com/posts').subscribe((res) => {
-      //this.httpClient.get('https://localhost:5001/students/all').subscribe((res)=> {
+      // this.httpClient.get('http://localhost:5000/students/all').subscribe((res)=> {
     this.data = res;
     })
   }

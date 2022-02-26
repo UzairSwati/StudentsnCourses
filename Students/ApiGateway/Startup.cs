@@ -27,6 +27,17 @@ namespace ApiGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Policy",
+                    builder =>
+                    builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials());
+            });
+
+
             services.AddControllers();
             services.AddOcelot(Configuration);
         }
@@ -38,6 +49,8 @@ namespace ApiGateway
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("Policy");
 
             app.UseHttpsRedirection();
 

@@ -36,6 +36,16 @@ namespace Courses
 
             services.AddScoped<ICourseService, CourseService>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Policy",
+                    builder =>
+                    builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials());
+            });
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -52,6 +62,8 @@ namespace Courses
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("Policy");
 
             app.UseHttpsRedirection();
 
