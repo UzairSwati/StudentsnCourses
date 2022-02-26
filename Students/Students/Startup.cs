@@ -36,8 +36,18 @@ namespace Students
 
             services.AddScoped<IStudentService, StudentService>();
 
-            services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Policy",
+                    builder =>
+                    builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials());
+            });
+
+            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
@@ -55,6 +65,8 @@ namespace Students
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("Policy");
 
             app.UseRouting();
 
