@@ -21,7 +21,7 @@ namespace Courses.DBContext
         public DbSet<Course> Course { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
-        => dbContextOptionsBuilder.UseSqlServer("Server=TOSHIBA\\SQLEXPRESS;user id=sa;pwd=admin;Database=StudentsData;");
+        => dbContextOptionsBuilder.UseSqlServer(AppConfig.SQLDBConnection);
 
     }
 }

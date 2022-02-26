@@ -41,7 +41,7 @@ namespace Students.Services
             }
         }
 
-        public async Task<int> UpdateAsync(Student student)
+        public async Task<bool> UpdateAsync(Student student)
         {
             try
             {
@@ -49,12 +49,25 @@ namespace Students.Services
 
                 await _studentsDBContext.SaveChangesAsync();
 
-                return res.Entity.Id;
+                return true;
             }
             catch (Exception)
             {
 
                 throw;
+            }
+        }
+
+        public async Task<Student> GetAsync(int id)
+        {
+            try
+            {
+                return await _studentsDBContext.Student.Where(x => x.Id == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 

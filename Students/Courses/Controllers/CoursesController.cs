@@ -63,8 +63,25 @@ namespace Courses.Controllers
         }
 
         [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetAsync([FromRoute] int id)
+        {
+            try
+            {
+                var response = await _courseService.GetAsync(id);
+
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
         [Route("all")]
-        public async Task<ActionResult<List<Course>>> GetAllAsync()
+        public async Task<ActionResult> GetAllAsync()
         {
             try
             {
@@ -81,7 +98,7 @@ namespace Courses.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<ActionResult<List<Course>>> DeleteAsync([FromRoute] int id)
+        public async Task<ActionResult> DeleteAsync([FromRoute] int id)
         {
             try
             {
