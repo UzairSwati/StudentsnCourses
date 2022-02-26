@@ -58,8 +58,25 @@ namespace Students.Controllers
         }
 
         [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetAsync([FromRoute] int id)
+        {
+            try
+            {
+                var response = await _studentService.GetAsync(id);
+
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
         [Route("all")]
-        public async Task<ActionResult<List<Student>>> GetAllAsync()
+        public async Task<ActionResult> GetAllAsync()
         {
             try
             {
@@ -76,7 +93,7 @@ namespace Students.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<ActionResult<List<Student>>> DeleteAsync([FromRoute] int id)
+        public async Task<ActionResult> DeleteAsync([FromRoute] int id)
         {
             try
             {
@@ -118,7 +135,7 @@ namespace Students.Controllers
 
                 var id = await _studentService.UpdateAsync(student);
 
-                return Ok(id);
+                return Ok(true);
             }
             catch (Exception)
             {

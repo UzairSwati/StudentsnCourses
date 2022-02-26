@@ -41,7 +41,7 @@ namespace Courses.Services
             }
         }
 
-        public async Task<int> UpdateAsync(Course course)
+        public async Task<bool> UpdateAsync(Course course)
         {
             try
             {
@@ -49,12 +49,25 @@ namespace Courses.Services
 
                 await _coursesDBContext.SaveChangesAsync();
 
-                return res.Entity.Id;
+                return true;
             }
             catch (Exception)
             {
 
                 throw;
+            }
+        }
+
+        public async Task<Course> GetAsync(int id)
+        {
+            try
+            {
+                return await _coursesDBContext.Course.Where(x => x.Id == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
